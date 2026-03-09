@@ -1,0 +1,51 @@
+.triangle-wrapper {
+  position: relative;
+  width: 110px;
+  height: 300px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+
+.down {
+  border-left: 50px solid transparent;
+  border-right: 60px solid transparent;
+  border-top: 300px solid #8b0000;
+}
+
+.up {
+  border-left: 50px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 300px solid #8b0000;
+}
+
+.triangle-wrapper:nth-child(even) .triangle.up {
+  border-bottom-color: #654321;
+}
+
+.triangle-wrapper:nth-child(even) .triangle.down {
+  border-top-color: #654321;
+}
+
+.triangle-wrapper:nth-child(even) .triangle.up:hover {
+  border-bottom-color: #91704f;
+}
+
+.triangle-wrapper:nth-child(even) .triangle.down:hover {
+  border-top-color: #91704f;
+}
+
+.up:hover {
+  border-bottom-color: #a01f1f;
+}
+
+.down:hover {
+  border-top-color: #a01f1f;
+}
