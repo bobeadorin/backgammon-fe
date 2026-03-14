@@ -8,11 +8,20 @@ interface GameContextProviderProps {
   children: ReactNode;
 }
 
+// enum GameState {
+//   INITIAL_ROLL = "INITIAL_ROLL",
+//   GAME_RUNNING = "GAME_RUNNING",
+//   GAME_OVER = "GAME_OVER",
+// }
+
 export default function GameContextProvider({ children }: GameContextProviderProps) {
-  const [firstRollPlayer1, setFirstRollPlayer1] = useState<string>("white");
-  const [firstRollPlayer2, setFirstRollPlayer2] = useState<string>("black");
-  
+
+  // const [gameState, setGameState] = useState<GameState>();
+
+
   const [currentPlayer, setCurrentPlayer] = useState<string>("white");
+  const [whitePlayer,setWhitePlayer] = useState<string>("");
+  const [blackPlayer,setBlackPlayer] = useState<string>("");
   const [diceRoll, setDiceRoll] = useState<number[]>([]);
   const [boardPieces, setBoardPieces] = useState<GameBoard>(generateStandardBoard());
   const [selectedPiece, setSelectedPiece] = useState<PieceFormat | null>(null);
@@ -20,6 +29,9 @@ export default function GameContextProvider({ children }: GameContextProviderPro
 
 
   const initGame = () => {
+    // setGameState(GameState.INITIAL_ROLL);
+    setCurrentPlayer("white");
+    setDiceRoll([]);
     setBoardPieces(generateStandardBoard());
   };
 
@@ -28,6 +40,10 @@ export default function GameContextProvider({ children }: GameContextProviderPro
       value={{
         currentPlayer,
         setCurrentPlayer,
+        whitePlayer,
+        setWhitePlayer,
+        blackPlayer,
+        setBlackPlayer,
         diceRoll,
         setDiceRoll,
         boardPieces,

@@ -51,12 +51,14 @@ export default function Triangle({ isDown, pieces, id }: TriangleProps) {
     }
   };
 
+
   return (
     <div className="triangle-wrapper" onClick={handleOnClick}>
       <div className={isDown ? "triangle down" : "triangle up"}></div>
       {pieces.map((value, index) => (
-        <Piece key={index} isDown={isDown} pieceId={index} data={value} />
+        <Piece key={index} isDown={isDown} pieceId={index} data={value}/>
       ))}
     </div>
   );
 }
+

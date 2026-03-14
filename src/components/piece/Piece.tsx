@@ -13,8 +13,8 @@ export default function Piece({ isDown, pieceId, data }: PieceProps) {
     <div
       className={data.color === PieceColor.BLACK ? "piece black" : "piece white"}
       style={{
-        top: isDown ? pieceId * 80 : undefined,
-        bottom: isDown ? undefined : pieceId * 80,
+        top: isDown ? pieceId * 65 : undefined,
+        bottom: isDown ? undefined : pieceId * 65,
       }}
     ></div>
   );

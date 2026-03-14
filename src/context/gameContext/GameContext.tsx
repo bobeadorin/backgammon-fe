@@ -13,6 +13,10 @@ export type GameBoard = {
 interface GameContextInterface {
   currentPlayer: string;
   setCurrentPlayer: (player: string) => void;
+  whitePlayer: string;
+  setWhitePlayer: (player: string) => void;
+  blackPlayer: string;
+  setBlackPlayer: (player: string) => void;
   diceRoll: number[];
   setDiceRoll: (dice: number[]) => void;
   boardPieces: GameBoard;

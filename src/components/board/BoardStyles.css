@@ -1,0 +1,8 @@
+.board {
+  width: 70%;
+  height: 90%;
+  background-color: #d2b48c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

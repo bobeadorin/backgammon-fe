@@ -1,10 +1,10 @@
 import Dice3D from "react-3d-dice";
 import "./DiceSectionStyles.css";
 import { useState } from "react";
-import { useGameContext } from "../../hooks/UseGameContext";
+// import { useGameContext } from "../../hooks/UseGameContext";
 export default function DiceSection() {
-  const {currentPlayer, diceRoll, setDiceRoll} = useGameContext()
-  
+  // const {currentPlayer, diceRoll, setDiceRoll} = useGameContext()
+
   const [results, setResults] = useState<number[]>([]);
   const [isRolling, setIsRolling] = useState(false);
   const [trigger, setTrigger] = useState(0);
