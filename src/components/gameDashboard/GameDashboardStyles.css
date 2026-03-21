@@ -2,6 +2,7 @@
 
 .boardDashBoard-container {
   height: 90%;
+  min-width: 20%;
   border: 3px solid black;
   background-color: rgb(59, 40, 11);
   display: flex;

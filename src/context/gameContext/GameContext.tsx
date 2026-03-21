@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import type { PieceFormat } from "../../types/type";
+import { PieceFormat } from "../../types/type";
+import { GameState } from "../../enums/GameState";
+
 
 // ------------------- TYPES -------------------
-
-
 
 export type GameBoard = {
   id: number;
@@ -11,12 +11,17 @@ export type GameBoard = {
 }[];
 
 interface GameContextInterface {
-  currentPlayer: string;
+  gameState: GameState;
+  setGameState: (state: GameState) => void;
+  currentPlayer: string | null;
   setCurrentPlayer: (player: string) => void;
   whitePlayer: string;
   setWhitePlayer: (player: string) => void;
   blackPlayer: string;
   setBlackPlayer: (player: string) => void;
+  rollForFirstPlayer: () => void;
+  initialDiceRoll: { white: number[]; black: number[] };
+  rollDice: () => number[];
   diceRoll: number[];
   setDiceRoll: (dice: number[]) => void;
   boardPieces: GameBoard;

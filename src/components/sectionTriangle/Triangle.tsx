@@ -13,14 +13,10 @@ export default function Triangle({ isDown, pieces, id }: TriangleProps) {
   const { selectedPiece, boardPieces, setSelectedPiece, setBoardPieces } = useGameContext();
 
   const handleOnClick = () => {
-    console.log(id)
-    if (selectedPiece) {
-      if (pieces.length === 1 && pieces[0].color !== selectedPiece?.color) {
-        return; // continue
-      }
 
-      if (pieces.length > 1 && pieces[0].color !== selectedPiece?.color) {
-        return;
+    if (selectedPiece) {
+      if (pieces.length > 0 && pieces[0].color !== selectedPiece?.color) {
+        return; // continue
       }
 
       setBoardPieces(
@@ -45,8 +41,7 @@ export default function Triangle({ isDown, pieces, id }: TriangleProps) {
     } else {
       const removedPiece = pieces.pop() ?? null;
       setSelectedPiece(removedPiece);
-      console.log("Clicked point:", id);
-      console.log("Pieces:", pieces);
+
       return;
     }
   };

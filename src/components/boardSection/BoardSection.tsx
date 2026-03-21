@@ -8,7 +8,6 @@ type BoardSectionProps = {
 };
 
 export default function BoardSection({ isDown, points }: BoardSectionProps) {
-  console.log(points)
   return (
     <section className="board-section">
       {points.map((point) => (

@@ -1,13 +1,14 @@
-import { BoardSideType } from "../boardSection/boardSection.types";
+import { SIDES } from "../boardSection/boardSection.types";
 import BoardSide from "../boardSide/BoardSide";
+import DiceController from "../diceController/DiceController";
 import "./BoardStyles.css";
-
 
 export default function Board() {
   return (
     <div className="board">
-      <BoardSide side={BoardSideType.LEFT} />
-      <BoardSide side={BoardSideType.RIGHT} />
+      <DiceController />
+      <BoardSide side={SIDES.LEFT} />
+      <BoardSide side={SIDES.RIGHT} />
     </div>
   );
 }
