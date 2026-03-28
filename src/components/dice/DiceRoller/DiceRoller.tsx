@@ -11,6 +11,7 @@ import {
 } from "../constants/dice-constants";
 import Dice from "../Dice";
 import "./DiceRollerStyles.css";
+import { GameState } from "../../../enums/GameState";
 
 type DiceRollerProps = {
   values: number[];
@@ -26,13 +27,13 @@ export default function DiceRoller({
   onAnimationFinished,
   buttonCallback,
 }: DiceRollerProps) {
-  const { rollDice } = useGameContext();
+  const { diceRoll,gameState,isRolling, setIsRolling, rollDice } = useGameContext();
 
   const [die1, setDie1] = useState<{ x: number; y: number; value?: number } | null>(null);
   const [die2, setDie2] = useState<{ x: number; y: number; value?: number } | null>(null);
-  const [isRolling, setIsRolling] = useState<boolean>(false);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  
 
   useEffect(() => {
     if (!values.length) return;
@@ -85,7 +86,7 @@ export default function DiceRoller({
       )}
 
       {showButton && (
-        <button onClick={buttonCallback ?? rollDice} className="roll-btn" disabled={isRolling}>
+        <button onClick={buttonCallback ?? rollDice} className="roll-btn" disabled={isRolling || (diceRoll.length > 0 && gameState === GameState.GAME_RUNNING)}>
           {isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
         </button>
       )}

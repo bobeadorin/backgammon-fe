@@ -1,4 +1,4 @@
-import { PieceColor } from "../../enums/PieceColor";
+import { Color } from "../../enums/PieceColor";
 import type { PieceFormat } from "../../types/type";
 import "./PieceStyles.css";
 
@@ -11,7 +11,7 @@ type PieceProps = {
 export default function Piece({ isDown, pieceId, data }: PieceProps) {
   return (
     <div
-      className={data.color === PieceColor.BLACK ? "piece black" : "piece white"}
+      className={data.color === Color.BLACK ? "piece black" : "piece white"}
       style={{
         top: isDown ? pieceId * 65 : undefined,
         bottom: isDown ? undefined : pieceId * 65,

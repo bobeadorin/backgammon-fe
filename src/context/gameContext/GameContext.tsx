@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { PieceFormat } from "../../types/type";
+import { PieceFormat, Player } from "../../types/type";
 import { GameState } from "../../enums/GameState";
 
 
@@ -13,12 +13,16 @@ export type GameBoard = {
 interface GameContextInterface {
   gameState: GameState;
   setGameState: (state: GameState) => void;
-  currentPlayer: string | null;
-  setCurrentPlayer: (player: string) => void;
-  whitePlayer: string;
-  setWhitePlayer: (player: string) => void;
-  blackPlayer: string;
-  setBlackPlayer: (player: string) => void;
+  currentPlayer: {name:string,color:string,diceRoll:number[]}| null;
+  setCurrentPlayer: (player: Player) => void;
+  possibleMoves: number[];
+  setPossibleMoves: (moves: number[]) => void;
+  isRolling: boolean;
+  setIsRolling: (isRolling: boolean) => void;
+  whitePlayer: Player;
+  setWhitePlayer: (player: Player) => void;
+  blackPlayer: Player;
+  setBlackPlayer: (player: Player) => void;
   rollForFirstPlayer: () => void;
   initialDiceRoll: { white: number[]; black: number[] };
   rollDice: () => number[];
@@ -30,7 +34,6 @@ interface GameContextInterface {
   setSelectedPiece: (piece: PieceFormat | null) => void;
   hitPiece: PieceFormat | null;
   setHitPiece: (piece: PieceFormat | null) => void;
-  initGame: () => void;
 }
 
 // ------------------- CONTEXT -------------------

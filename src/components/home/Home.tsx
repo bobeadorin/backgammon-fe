@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./HomeStyles.css";
 import { useNavigate } from "react-router-dom";
 import { useGameContext } from "../../hooks/UseGameContext";
+import { Color } from "../../enums/PieceColor";
 
 export default function Home() {
   const [whiteName, setWhiteName] = useState("");
@@ -13,8 +14,8 @@ export default function Home() {
 
   const handleStart = () => {
     if (!canStart) return;
-    setWhitePlayer(whiteName.trim() ?? "white");
-    setBlackPlayer(blackName.trim() ?? "black");
+    setWhitePlayer({ name: whiteName.trim(), color: Color.WHITE, diceRoll: [] });
+    setBlackPlayer({ name: whiteName.trim(), color: Color.WHITE, diceRoll: [] });
     navigate("/game");
   };
 
