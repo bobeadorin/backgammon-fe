@@ -22,3 +22,4 @@ export const STARTING_POSITIONS = [
   { index: 18, count: 5, color: Color.BLACK },
   { index: 23, count: 2, color: Color.WHITE },//
 ];
+

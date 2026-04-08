@@ -1,6 +1,7 @@
 import { GameState } from "../../enums/GameState";
 import { Color } from "../../enums/PieceColor";
 import { useGameContext } from "../../hooks/UseGameContext";
+import { Player } from "../../types/type";
 import { ROLL_DICE_TEXT } from "../dice/constants/dice-constants";
 import DiceRoller from "../dice/DiceRoller/DiceRoller";
 
@@ -24,14 +25,17 @@ export default function DiceController() {
     const blackIsDouble = blackDice[0] === blackDice[1];
     const whiteIsDouble = whiteDice[0] === whiteDice[1];
 
-    let winner: Color.BLACK | Color.WHITE;
+    let winner: Player;
 
     if (blackIsDouble && !whiteIsDouble) {
-      winner = Color.BLACK;
+      winner = { color: Color.BLACK, name: "black", diceRoll: [] };
     } else if (whiteIsDouble && !blackIsDouble) {
-      winner = Color.WHITE;
+      winner = { color: Color.WHITE, name: "white", diceRoll: [] };
     } else {
-      winner = blackSum > whiteSum ? Color.BLACK : Color.WHITE;
+      winner =
+        blackSum > whiteSum
+          ? { color: Color.BLACK, name: "black", diceRoll: [] }
+          : { color: Color.WHITE, name: "white", diceRoll: [] };
     }
 
     setCurrentPlayer(winner);

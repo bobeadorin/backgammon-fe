@@ -2,7 +2,6 @@ import { createContext } from "react";
 import { PieceFormat, Player } from "../../types/type";
 import { GameState } from "../../enums/GameState";
 
-
 // ------------------- TYPES -------------------
 
 export type GameBoard = {
@@ -13,7 +12,7 @@ export type GameBoard = {
 interface GameContextInterface {
   gameState: GameState;
   setGameState: (state: GameState) => void;
-  currentPlayer: {name:string,color:string,diceRoll:number[]}| null;
+  currentPlayer: { name: string; color: string; diceRoll: number[] } | null;
   setCurrentPlayer: (player: Player) => void;
   possibleMoves: number[];
   setPossibleMoves: (moves: number[]) => void;
@@ -34,6 +33,7 @@ interface GameContextInterface {
   setSelectedPiece: (piece: PieceFormat | null) => void;
   hitPiece: PieceFormat | null;
   setHitPiece: (piece: PieceFormat | null) => void;
+  handleTriangleOnClick: (id: number, pieces: PieceFormat[]) => void;
 }
 
 // ------------------- CONTEXT -------------------

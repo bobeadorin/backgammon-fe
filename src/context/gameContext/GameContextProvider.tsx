@@ -7,6 +7,7 @@ import { GameState } from "../../enums/GameState";
 import { DICE_SIDES } from "../../components/dice/constants/dice-constants";
 import { isTie, rand } from "../../utils/gameUtils/gameUtils";
 import { Color } from "../../enums/PieceColor";
+import { getValidBoardSpaces } from "../../utils/gameUtils/gameUtils";
 
 interface GameContextProviderProps {
   children: ReactNode;
@@ -73,6 +74,67 @@ export default function GameContextProvider({ children }: GameContextProviderPro
     return [val1, val2];
   };
 
+  const handleIsPieceSelected = (id: number, pieces: PieceFormat[]) => {
+    if (selectedPiece) {
+      // Can't place on opponent's stack if more than one piece
+      if (pieces.length > 0 && pieces[0].color !== selectedPiece.color) return;
+
+      if (!possibleMoves.includes(id)) {
+        return;
+      }
+
+      // Place the selected piece on this triangle
+      setBoardPieces(
+        boardPieces.map((point) => {
+          if (point.id === id) {
+            return {
+              ...point,
+              pieces: [...point.pieces, { ...selectedPiece, position: id }], // update position
+            };
+          }
+          return point;
+        }),
+      );
+
+      setSelectedPiece(null); // clear selected piece after placing
+      return;
+    }
+  };
+
+  const handleNotSelectedPiece = (id: number, pieces: PieceFormat[]) => {
+    if (!selectedPiece) {
+      if (pieces.length === 0) return;
+
+      if (currentPlayer && currentPlayer.color !== pieces[pieces.length - 1].color) return;
+
+      const pieceToPick = pieces[pieces.length - 1]; // pick last piece immutably
+      setSelectedPiece(pieceToPick);
+
+      // Immediately log valid moves for the piece we just picked
+      setPossibleMoves(getValidBoardSpaces(boardPieces, diceRoll, pieceToPick));
+
+      // Remove the piece from the board immutably
+      setBoardPieces(
+        boardPieces.map((point) => {
+          if (point.id === id) {
+            return {
+              ...point,
+              pieces: point.pieces.slice(0, point.pieces.length - 1),
+            };
+          }
+          return point;
+        }),
+      );
+    }
+  };
+
+  const handleTriangleOnClick = (id: number, pieces: PieceFormat[]) => {
+    if (diceRoll.length === 0 || !currentPlayer) return;
+
+    if (selectedPiece) handleIsPieceSelected(id, pieces);
+    else handleNotSelectedPiece(id, pieces);
+  };
+
   return (
     <GameContext.Provider
       value={{
@@ -99,6 +161,7 @@ export default function GameContextProvider({ children }: GameContextProviderPro
         setSelectedPiece,
         hitPiece,
         setHitPiece,
+        handleTriangleOnClick,
       }}
     >
       {children}
