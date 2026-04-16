@@ -34,6 +34,8 @@ interface GameContextInterface {
   hitPiece: PieceFormat | null;
   setHitPiece: (piece: PieceFormat | null) => void;
   handleTriangleOnClick: (id: number, pieces: PieceFormat[]) => void;
+  handleSetPossibleMoves: (pieceToPick: PieceFormat) => void;
+  clearPossibleMoves: () => void;
 }
 
 // ------------------- CONTEXT -------------------

@@ -28,6 +28,7 @@ export default function GameContextProvider({ children }: GameContextProviderPro
 
   useEffect(() => {
     console.log(gameState);
+    console.log(currentPlayer)
   }, [gameState]);
 
   const rollForFirstPlayer = (): void => {
@@ -57,7 +58,7 @@ export default function GameContextProvider({ children }: GameContextProviderPro
 
     return whiteSum > blackSum
       ? { name: whitePlayer.name, color: Color.WHITE, diceRoll: [] }
-      : { name: whitePlayer.name, color: Color.BLACK, diceRoll: [] };
+      : { name: blackPlayer.name, color: Color.BLACK, diceRoll: [] };
   };
 
   const rollDice = (): number[] => {
@@ -82,19 +83,10 @@ export default function GameContextProvider({ children }: GameContextProviderPro
       if (!possibleMoves.includes(id)) {
         return;
       }
-
+      setPossibleMoves(getValidBoardSpaces(boardPieces, diceRoll, selectedPiece));
       // Place the selected piece on this triangle
-      setBoardPieces(
-        boardPieces.map((point) => {
-          if (point.id === id) {
-            return {
-              ...point,
-              pieces: [...point.pieces, { ...selectedPiece, position: id }], // update position
-            };
-          }
-          return point;
-        }),
-      );
+
+      addBoardPiece(id);
 
       setSelectedPiece(null); // clear selected piece after placing
       return;
@@ -110,22 +102,37 @@ export default function GameContextProvider({ children }: GameContextProviderPro
       const pieceToPick = pieces[pieces.length - 1]; // pick last piece immutably
       setSelectedPiece(pieceToPick);
 
-      // Immediately log valid moves for the piece we just picked
-      setPossibleMoves(getValidBoardSpaces(boardPieces, diceRoll, pieceToPick));
-
+      removeBoardPiece(id);
       // Remove the piece from the board immutably
-      setBoardPieces(
-        boardPieces.map((point) => {
-          if (point.id === id) {
-            return {
-              ...point,
-              pieces: point.pieces.slice(0, point.pieces.length - 1),
-            };
-          }
-          return point;
-        }),
-      );
     }
+  };
+
+  const addBoardPiece = (id: number) => {
+    setBoardPieces(
+      boardPieces.map((point) => {
+        if (point.id === id) {
+          return {
+            ...point,
+            pieces: [...point.pieces, { ...selectedPiece!, position: id }], // update position
+          };
+        }
+        return point;
+      }),
+    );
+  };
+
+  const removeBoardPiece = (id: number) => {
+    setBoardPieces(
+      boardPieces.map((point) => {
+        if (point.id === id) {
+          return {
+            ...point,
+            pieces: point.pieces.slice(0, point.pieces.length - 1),
+          };
+        }
+        return point;
+      }),
+    );
   };
 
   const handleTriangleOnClick = (id: number, pieces: PieceFormat[]) => {
@@ -133,6 +140,17 @@ export default function GameContextProvider({ children }: GameContextProviderPro
 
     if (selectedPiece) handleIsPieceSelected(id, pieces);
     else handleNotSelectedPiece(id, pieces);
+  };
+
+  const handleSetPossibleMoves = (pieceToPick: PieceFormat) => {
+    if (!pieceToPick || pieceToPick.color !== currentPlayer?.color || selectedPiece) return;
+
+    setPossibleMoves(getValidBoardSpaces(boardPieces, diceRoll, pieceToPick));
+  };
+
+  const clearPossibleMoves = () => {
+    if (selectedPiece) return;
+    setPossibleMoves([]);
   };
 
   return (
@@ -162,6 +180,8 @@ export default function GameContextProvider({ children }: GameContextProviderPro
         hitPiece,
         setHitPiece,
         handleTriangleOnClick,
+        handleSetPossibleMoves,
+        clearPossibleMoves,
       }}
     >
       {children}

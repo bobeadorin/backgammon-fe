@@ -2,7 +2,7 @@
 .dice-container {
   position: absolute;
   top: 45%;
-  left: 55%;
+  left: 56%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   display: flex;
@@ -48,7 +48,7 @@
 .dice-sprite {
   width: 128px;
   height: 128px;
-  background-image: url("E:/Projects/Tables/backgammon-fe/src/assets/dice_sheet.png");
+  background-image: url("/src/assets/dice_sheet.png");
   background-size: 1600% 1600%;
   background-repeat: no-repeat;
   image-rendering: pixelated;

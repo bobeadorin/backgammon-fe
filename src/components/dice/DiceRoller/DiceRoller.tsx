@@ -27,13 +27,12 @@ export default function DiceRoller({
   onAnimationFinished,
   buttonCallback,
 }: DiceRollerProps) {
-  const { diceRoll,gameState,isRolling, setIsRolling, rollDice } = useGameContext();
+  const { diceRoll, gameState, isRolling, setIsRolling, rollDice } = useGameContext();
 
   const [die1, setDie1] = useState<{ x: number; y: number; value?: number } | null>(null);
   const [die2, setDie2] = useState<{ x: number; y: number; value?: number } | null>(null);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  
 
   useEffect(() => {
     if (!values.length) return;
@@ -42,37 +41,41 @@ export default function DiceRoller({
       setIsRolling(true);
     }, 0);
 
-    intervalRef.current = setInterval(() => {
-      setDie1({
-        x: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
-        y: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
-      });
+    intervalRef.current = setInterval(startDiceIntervalAnimation, FRAME_SPEED_MS);
 
-      setDie2({
-        x: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
-        y: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
-      });
-    }, FRAME_SPEED_MS);
-
-    const timeout = setTimeout(() => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-
-      const [v1, v2] = values;
-
-      setDie1({ ...FACE_COORDS[v1], value: v1 });
-      setDie2({ ...FACE_COORDS[v2], value: v2 });
-
-      setIsRolling(false);
-      if (onAnimationFinished) {
-        onAnimationFinished();
-      }
-    }, TOTAL_ROLL_TIME_MS);
+    const timeout = setTimeout(finishAndSetDiceRoll, TOTAL_ROLL_TIME_MS);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       clearTimeout(timeout);
     };
   }, [values]);
+
+  const startDiceIntervalAnimation = () => {
+    setDie1({
+      x: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
+      y: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
+    });
+
+    setDie2({
+      x: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
+      y: Math.floor(Math.random() * SPRITE_SHEET_DIMENSION),
+    });
+  };
+
+  const finishAndSetDiceRoll = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+
+    const [v1, v2] = values;
+
+    setDie1({ ...FACE_COORDS[v1], value: v1 });
+    setDie2({ ...FACE_COORDS[v2], value: v2 });
+
+    setIsRolling(false);
+    if (onAnimationFinished) {
+      onAnimationFinished();
+    }
+  };
 
   return (
     <div className={isLeft ? "dice-container-left" : "dice-container"}>
@@ -86,7 +89,11 @@ export default function DiceRoller({
       )}
 
       {showButton && (
-        <button onClick={buttonCallback ?? rollDice} className="roll-btn" disabled={isRolling || (diceRoll.length > 0 && gameState === GameState.GAME_RUNNING)}>
+        <button
+          onClick={buttonCallback ?? rollDice}
+          className="roll-btn"
+          disabled={isRolling || (diceRoll.length > 0 && gameState === GameState.GAME_RUNNING)}
+        >
           {isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
         </button>
       )}

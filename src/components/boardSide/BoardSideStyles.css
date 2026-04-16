@@ -1,11 +1,13 @@
 .board-side{
-    height: 100%;
-    width: 50%;
+    height: 60rem;
     border: 10px solid black;
     background-color: blanchedalmond;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 28%;
+    gap: 22.5rem;
+    background-image: url('src/assets/board-wood-background.jpg');
+    background-position: center;
+    background-size: cover;    
 }

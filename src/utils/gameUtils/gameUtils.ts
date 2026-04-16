@@ -29,7 +29,7 @@ export function validateFirstRoll(firstPlayerRoll: number[], secondPlayerRoll: n
 export function getValidBoardSpaces(
   board: GameBoard,
   diceRoll: number[],
-  selectedPiece: PieceFormat,
+  selectedPiece: PieceFormat | null,
 ): number[] {
   const possibleMoves = [];
 

@@ -11,12 +11,14 @@ type TriangleProps = {
 };
 
 export default function Triangle({ isDown, pieces, id, isPossibleMove = false }: TriangleProps) {
-  const { handleTriangleOnClick } = useGameContext();
+  const { handleTriangleOnClick, handleSetPossibleMoves, clearPossibleMoves } = useGameContext();
 
   return (
     <div
       className={isPossibleMove ? "triangle-wrapper-selected" : "triangle-wrapper"}
       onClick={() => handleTriangleOnClick(id, pieces)}
+      onMouseEnter={() => handleSetPossibleMoves(pieces[pieces.length - 1])}
+      onMouseLeave={() => clearPossibleMoves()}
     >
       {/* debuggView */}
       <div
@@ -31,7 +33,7 @@ export default function Triangle({ isDown, pieces, id, isPossibleMove = false }:
       {/* debuggView */}
       <div className={isDown ? "triangle down" : "triangle up"}></div>
       {pieces.map((value, index) => (
-        <Piece key={index} isDown={isDown} pieceId={index} data={value} />
+        <Piece key={index} isDown={isDown} pieceId={index} data={value} />// TODO: Fix the css for this
       ))}
     </div>
   );
