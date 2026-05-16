@@ -1,8 +1,13 @@
 .board {
-  width: 82rem;
+  width: 95rem;
   height: 60rem;
-  background-color: #d2b48c;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1900px) {
+  .board {
+    transform: scale(0.85);
+  }
 }

@@ -200,14 +200,15 @@
 }
 
 /* highlight middle option */
-.home__buttons button:nth-child(2) {
+.home__buttons button:nth-child(3) {
   background: linear-gradient(145deg, #d4af37, #b8962e);
   color: #000;
-}
+} */
 
-.home__buttons button:nth-child(2):hover {
+.home__buttons button:nth-child(3):hover {
   background: linear-gradient(145deg, #e6c75a, #c9a63a);
 }
+
 
 /* =========================
    SWINGING LAMP
@@ -245,7 +246,6 @@
   box-shadow: 0 0 20px rgba(255, 220, 120, 0.9);
 }
 
-/* light cone */
 .lamp__light {
   position: absolute;
   top: 150px;
@@ -267,9 +267,7 @@
 }
 
 
-
-
-@media (min-width: 1900px) {
+@media (min-width: 2000px) {
   .home__selection_container {
     transform: scale(1.3);
   }

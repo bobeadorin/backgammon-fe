@@ -1,6 +1,6 @@
 .board-side{
     height: 60rem;
-    border: 10px solid black;
+    border: 30px solid rgb(48, 15, 15);
     background-color: blanchedalmond;
     display: flex;
     flex-direction: column;
@@ -10,4 +10,8 @@
     background-image: url('src/assets/board-wood-background.jpg');
     background-position: center;
     background-size: cover;    
+}
+
+.board-side.RIGHT {
+  border-right: none;
 }

@@ -11,7 +11,7 @@ import {
 } from "../constants/dice-constants";
 import Dice from "../Dice";
 import "./DiceRollerStyles.css";
-import { GameState } from "../../../enums/GameState";
+import { GAME_STATE } from "../../../enums/GameState";
 
 type DiceRollerProps = {
   values: number[];
@@ -27,29 +27,29 @@ export default function DiceRoller({
   onAnimationFinished,
   buttonCallback,
 }: DiceRollerProps) {
-  const { diceRoll, gameState, isRolling, setIsRolling, rollDice } = useGameContext();
+  const { state, dispatch } = useGameContext();
 
   const [die1, setDie1] = useState<{ x: number; y: number; value?: number } | null>(null);
   const [die2, setDie2] = useState<{ x: number; y: number; value?: number } | null>(null);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    if (!values.length) return;
+  // useEffect(() => {
+  //   if (!values.length) return;
 
-    setTimeout(() => {
-      setIsRolling(true);
-    }, 0);
+  //   setTimeout(() => {
+  //     setIsRolling(true);
+  //   }, 0);
 
-    intervalRef.current = setInterval(startDiceIntervalAnimation, FRAME_SPEED_MS);
+  //   intervalRef.current = setInterval(startDiceIntervalAnimation, FRAME_SPEED_MS);
 
-    const timeout = setTimeout(finishAndSetDiceRoll, TOTAL_ROLL_TIME_MS);
+  //   const timeout = setTimeout(finishAndSetDiceRoll, TOTAL_ROLL_TIME_MS);
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      clearTimeout(timeout);
-    };
-  }, [values]);
+  //   return () => {
+  //     if (intervalRef.current) clearInterval(intervalRef.current);
+  //     clearTimeout(timeout);
+  //   };
+  // }, [values]);
 
   const startDiceIntervalAnimation = () => {
     setDie1({
@@ -71,7 +71,7 @@ export default function DiceRoller({
     setDie1({ ...FACE_COORDS[v1], value: v1 });
     setDie2({ ...FACE_COORDS[v2], value: v2 });
 
-    setIsRolling(false);
+    // setIsRolling(false);
     if (onAnimationFinished) {
       onAnimationFinished();
     }
@@ -79,12 +79,12 @@ export default function DiceRoller({
 
   return (
     <div className={isLeft ? "dice-container-left" : "dice-container"}>
-      {die1 && <Dice isRolling={isRolling} coordonates={die1} />}
-      {die2 && <Dice isRolling={isRolling} coordonates={die2} />}
-      {!isRolling && die1 && die2 && die1?.value == die2?.value && (
+      {/* {die1 && <Dice isRolling={state.isRolling} coordonates={die1} />}
+      {die2 && <Dice isRolling={state.isRolling} coordonates={die2} />}
+      {!state.isRolling && die1 && die2 && die1?.value == die2?.value && (
         <>
-          <Dice isRolling={isRolling} coordonates={die1} />
-          <Dice isRolling={isRolling} coordonates={die1} />
+          <Dice isRolling={state.isRolling} coordonates={die1} />
+          <Dice isRolling={state.isRolling} coordonates={die1} />
         </>
       )}
 
@@ -96,7 +96,7 @@ export default function DiceRoller({
         >
           {isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
         </button>
-      )}
+      )} */}
     </div>
   );
 }

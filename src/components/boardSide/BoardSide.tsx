@@ -8,14 +8,14 @@ type BoardSideProps = {
 };
 
 export default function BoardSide({ side }: BoardSideProps) {
-  const { boardPieces } = useGameContext();
+  const { state } = useGameContext();
 
-  const topPieces = side === SIDES.LEFT ? boardPieces.slice(6, 12).reverse() : boardPieces.slice(0, 6).reverse();
+  const topPieces = side === SIDES.LEFT ? state.boardPieces.slice(6, 12).reverse() : state.boardPieces.slice(0, 6).reverse();
 
-  const bottomPieces = side === SIDES.LEFT ? boardPieces.slice(12, 18) : boardPieces.slice(18, 24);
+  const bottomPieces = side === SIDES.LEFT ? state.boardPieces.slice(12, 18) : state.boardPieces.slice(18, 24);
   return (
     <>
-      <section className="board-side">
+      <section className={`board-side ${side}`}>
         <BoardSection isDown={true} points={topPieces} />
         <BoardSection isDown={false} points={bottomPieces} />
       </section>

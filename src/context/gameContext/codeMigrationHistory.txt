@@ -1,0 +1,137 @@
+
+const setPossibleSelectablePlacesWithBoardMoves = () => {
+      setBoardPieces((prev: GameBoard): GameBoard => {
+        return prev.map((boardRows) => {
+          if (boardRows.pieces.length > 0 && boardRows.pieces[0].color === currentPlayer?.color) {
+            boardRows.possibleMoves = GameEngine.getValidBoardSpaces(prev, diceRoll, boardRows.pieces[0]);
+
+            console.log(boardRows.id, boardRows.possibleMoves);
+          } else {
+            boardRows.possibleMoves = [];
+          }
+
+          return boardRows;
+        });
+      });
+    };
+
+    console.log(setPossibleSelectablePlacesWithBoardMoves)
+
+  const rollForFirstPlayer = (): void => {
+    let whiteRoll = [];
+    let blackRoll = [];
+    do {
+      whiteRoll = [GameEngine.rand(), GameEngine.rand()];
+      blackRoll = [GameEngine.rand(), GameEngine.rand()];
+    } while (GameEngine.isTie(whiteRoll, blackRoll));
+
+    const winner = calculateWinner(whiteRoll, blackRoll);
+
+    setInitialDiceRoll({ white: whiteRoll, black: blackRoll });
+    setCurrentPlayer(winner);
+    setGameState(GameState.GAME_RUNNING);
+  };
+
+  const calculateWinner = (white: number[], black: number[]): Player => {
+    const whiteDouble = white[0] === white[1];
+    const blackDouble = black[0] === black[1];
+
+    if (whiteDouble && !blackDouble) return { name: whitePlayer.name, color: Color.WHITE, diceRoll: [] };
+    if (blackDouble && !whiteDouble) return { name: whitePlayer.name, color: Color.BLACK, diceRoll: [] };
+
+    const whiteSum = white[0] + white[1];
+    const blackSum = black[0] + black[1];
+
+    return whiteSum > blackSum
+      ? { name: whitePlayer.name, color: Color.WHITE, diceRoll: [] }
+      : { name: blackPlayer.name, color: Color.BLACK, diceRoll: [] };
+  };
+
+  const rollDice = (): number[] => {
+    const val1 = Math.floor(Math.random() * DICE_SIDES) + 1;
+    const val2 = Math.floor(Math.random() * DICE_SIDES) + 1;
+
+    if (val1 === val2) {
+      setDiceRoll([val1, val2, val1, val2]);
+      return [val1, val2];
+    }
+
+    setDiceRoll([val1, val2]);
+
+    return [val1, val2];
+  };
+
+  const handleIsPieceSelected = (id: number, pieces: PieceFormat[]) => {
+    if (selectedPiece) {
+      if (pieces.length > 0 && pieces[0].color !== selectedPiece.color) return;
+
+      if (!possibleMoves.includes(id)) {
+        return;
+      }
+      setPossibleMoves(GameEngine.getValidBoardSpaces(boardPieces, diceRoll, selectedPiece));
+
+      addBoardPiece(id);
+
+      setSelectedPiece(null);
+      return;
+    }
+  };
+
+  const handleNotSelectedPiece = (id: number, pieces: PieceFormat[]) => {
+    if (!selectedPiece) {
+      if (pieces.length === 0) return;
+
+      if (currentPlayer && currentPlayer.color !== pieces[pieces.length - 1].color) return;
+
+      const pieceToPick = pieces[pieces.length - 1];
+      setSelectedPiece(pieceToPick);
+
+      removeBoardPiece(id);
+    }
+  };
+
+  const addBoardPiece = (id: number) => {
+    setBoardPieces(
+      boardPieces.map((point) => {
+        if (point.id === id) {
+          return {
+            ...point,
+            pieces: [...point.pieces, { ...selectedPiece!, position: id }],
+          };
+        }
+        return point;
+      }),
+    );
+  };
+
+  const removeBoardPiece = (id: number) => {
+    setBoardPieces(
+      boardPieces.map((point) => {
+        if (point.id === id) {
+          return {
+            ...point,
+            pieces: point.pieces.slice(0, point.pieces.length - 1),
+          };
+        }
+        return point;
+      }),
+    );
+  };
+
+  const handleTriangleOnClick = (id: number, pieces: PieceFormat[]) => {
+    if (diceRoll.length === 0 || !currentPlayer) return;
+
+    if (selectedPiece) handleIsPieceSelected(id, pieces);
+    else handleNotSelectedPiece(id, pieces);
+  };
+
+  const handleSetPossibleMoves = (pieceToPick: PieceFormat) => {
+    if (!pieceToPick || pieceToPick.color !== currentPlayer?.color || selectedPiece) return;
+
+    setPossibleMoves(GameEngine.getValidBoardSpaces(boardPieces, diceRoll, pieceToPick));
+  };
+
+  const clearPossibleMoves = () => {
+    if (selectedPiece) return;
+    setPossibleMoves([]);
+  };

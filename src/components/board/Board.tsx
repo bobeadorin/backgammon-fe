@@ -1,3 +1,4 @@
+import BearOffTray from "../bearOffTray/BearOffTray";
 import { SIDES } from "../boardSection/boardSection.types";
 import BoardSide from "../boardSide/BoardSide";
 import DiceController from "../diceController/DiceController";
@@ -9,6 +10,7 @@ export default function Board() {
       <DiceController />
       <BoardSide side={SIDES.LEFT} />
       <BoardSide side={SIDES.RIGHT} />
+      <BearOffTray />
     </div>
   );
 }
