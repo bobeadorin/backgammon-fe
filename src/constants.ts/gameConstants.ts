@@ -39,3 +39,5 @@ export const initialGameState: GameStateType = {
   isRolling: false,
   possibleMoves: [],
 };
+
+console.log(initialGameState)

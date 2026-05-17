@@ -1,3 +1,4 @@
+import Bar from "../bar/Bar";
 import BearOffTray from "../bearOffTray/BearOffTray";
 import { SIDES } from "../boardSection/boardSection.types";
 import BoardSide from "../boardSide/BoardSide";
@@ -11,6 +12,7 @@ export default function Board() {
       <BoardSide side={SIDES.LEFT} />
       <BoardSide side={SIDES.RIGHT} />
       <BearOffTray />
+      <Bar />
     </div>
   );
 }

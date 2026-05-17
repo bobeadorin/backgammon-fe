@@ -12,7 +12,7 @@ export const generateRow = (numberOfPieces: number, color: Color, position: numb
 };
 
 export const generateStandardBoard = (): GameBoard => {
-  const board: GameBoard = Array.from({ length: 24 }, (_, index) => ({
+  const board: GameBoard = Array.from({ length: 26 }, (_, index) => ({
     id: index,
     pieces: [],
     possibleMoves: [],
