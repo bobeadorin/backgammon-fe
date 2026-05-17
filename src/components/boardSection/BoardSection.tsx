@@ -9,11 +9,11 @@ type BoardSectionProps = {
 };
 
 export default function BoardSection({ isDown, points }: BoardSectionProps) {
-  const { state, dispatch } = useGameContext();
+  const { state } = useGameContext();
 
   return (
     <section className="board-section">
-      {points.map((point: any) => (
+      {points.map((point) => (
         <Triangle
           key={point.id}
           isDown={isDown}
@@ -26,5 +26,3 @@ export default function BoardSection({ isDown, points }: BoardSectionProps) {
     </section>
   );
 }
-
-// <Triangle key={point.id} isDown={isDown} pieces={point.pieces} id={point.id} isPossibleMove={possibleMoves.includes(point.id)} />

@@ -3,26 +3,30 @@ import { Color } from "../enums/PieceColor";
 import { generateStandardBoard } from "../game/gameInitialization/gameInitialization";
 import { GameStateType } from "../types/gameTypes";
 
+// const BOARD_BAR = 26;
+// const WHITE_BEAR_OFF_TRAY = 0;
+// const BLACK_BEAR_OFF_TRAY = 25;
+
 export const STARTING_POSITIONS_WHITE = [
-  { index: 0, count: 2, color: Color.WHITE },
-  { index: 5, count: 5, color: Color.BLACK },
-  { index: 7, count: 3, color: Color.BLACK },
-  { index: 11, count: 5, color: Color.WHITE },
-  { index: 12, count: 5, color: Color.BLACK },
-  { index: 16, count: 3, color: Color.WHITE },
-  { index: 18, count: 5, color: Color.WHITE },
-  { index: 23, count: 2, color: Color.BLACK },
+  { index: 1, count: 2, color: Color.WHITE },
+  { index: 6, count: 5, color: Color.BLACK },
+  { index: 8, count: 3, color: Color.BLACK },
+  { index: 12, count: 5, color: Color.WHITE },
+  { index: 13, count: 5, color: Color.BLACK },
+  { index: 17, count: 3, color: Color.WHITE },
+  { index: 19, count: 5, color: Color.WHITE },
+  { index: 24, count: 2, color: Color.BLACK },
 ];
 
 export const STARTING_POSITIONS = [
-  { index: 0, count: 2, color: Color.BLACK },
-  { index: 5, count: 5, color: Color.WHITE },
-  { index: 7, count: 3, color: Color.WHITE },
-  { index: 11, count: 5, color: Color.BLACK },
-  { index: 12, count: 5, color: Color.WHITE },
-  { index: 16, count: 3, color: Color.BLACK },
-  { index: 18, count: 5, color: Color.BLACK },
-  { index: 23, count: 2, color: Color.WHITE },
+  { index: 1, count: 2, color: Color.BLACK },
+  { index: 6, count: 5, color: Color.WHITE },
+  { index: 8, count: 3, color: Color.WHITE },
+  { index: 12, count: 5, color: Color.BLACK },
+  { index: 13, count: 5, color: Color.WHITE },
+  { index: 17, count: 3, color: Color.BLACK },
+  { index: 19, count: 5, color: Color.BLACK },
+  { index: 24, count: 2, color: Color.WHITE },
 ];
 
 export const initialGameState: GameStateType = {
@@ -40,4 +44,4 @@ export const initialGameState: GameStateType = {
   possibleMoves: [],
 };
 
-console.log(initialGameState)
+console.log(initialGameState);

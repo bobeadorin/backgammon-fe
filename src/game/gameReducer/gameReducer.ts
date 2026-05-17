@@ -23,12 +23,12 @@ function computeNextState(state: GameStateType, action: GameAction): GameStateTy
       return setGameMode(state, action.payload);
     case ACTIONS.ROLL_DICE:
       return rollDice(state);
-    case ACTIONS.START_INTIAL_DICE_ROLL:
+    case ACTIONS.START_INITIAL_DICE_ROLL:
       return startInitialRoll(state);
     case ACTIONS.SELECT_PIECE:
       //
       break;
-    case ACTIONS.SET_INTIAL_PLAYERS:
+    case ACTIONS.SET_INITIAL_PLAYERS:
       return setInitialPlayers(state);
     default:
       return state;

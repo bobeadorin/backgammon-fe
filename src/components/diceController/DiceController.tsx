@@ -1,18 +1,18 @@
 import { GAME_STATE } from "../../enums/GameState";
-import { ACTIONS } from "../../game/gameReducer/gameActionTypes";
 import { useGameContext } from "../../hooks/UseGameContext";
 import { ROLL_DICE_TEXT } from "../dice/constants/dice-constants";
 import DiceRoller from "../dice/DiceRoller/DiceRoller";
+import { GameActionsService } from "../../game/gameReducer/gameActions";
 
 export default function DiceController() {
   const { state, dispatch } = useGameContext();
 
   const handleFirstRoll = () => {
-    dispatch({ type: ACTIONS.SET_GAME_STATE, payload: GAME_STATE.INITIAL_ROLL });
-    dispatch({ type: ACTIONS.ROLL_DICE });
+    dispatch(GameActionsService.setGameState(GAME_STATE.INITIAL_ROLL));
+    dispatch(GameActionsService.rollDice());
 
     setTimeout(() => {
-      dispatch({ type: ACTIONS.SET_GAME_STATE, payload: GAME_STATE.WAITING_FOR_INITIAL_ROLL });
+      dispatch(GameActionsService.setGameState(GAME_STATE.WAITING_FOR_INITIAL_ROLL));
     }, 3000);
   };
 

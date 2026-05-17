@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
 import { useGameContext } from "../../hooks/UseGameContext";
-import { ACTIONS, GAME_MODE } from "../../game/gameReducer/gameActionTypes";
+import { GAME_MODE } from "../../game/gameReducer/gameActionTypes";
+import { GameActionsService } from "../../game/gameReducer/gameActions";
 
 export default function Home() {
   const { dispatch } = useGameContext();
@@ -9,7 +10,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleSinglePlayerClick = () => {
-    dispatch({ type: ACTIONS.SET_GAMEMODE, payload: GAME_MODE.SINGLEPLAYER });
+    dispatch(GameActionsService.setGameMode(GAME_MODE.SINGLEPLAYER));
 
     navigate("/matchConfiguration");
   };

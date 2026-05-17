@@ -2,6 +2,7 @@ import { useGameContext } from "../../hooks/UseGameContext";
 import BoardSection from "../boardSection/BoardSection";
 import { SIDES } from "../boardSection/boardSection.types";
 import "./BoardSideStyles.css";
+import { boardMapping } from "./utils/boardSide.utils";
 
 type BoardSideProps = {
   side: SIDES;
@@ -9,10 +10,8 @@ type BoardSideProps = {
 
 export default function BoardSide({ side }: BoardSideProps) {
   const { state } = useGameContext();
+  const { topPieces, bottomPieces } = boardMapping(side, state);
 
-  const topPieces = side === SIDES.LEFT ? state.boardPieces.slice(6, 12).reverse() : state.boardPieces.slice(0, 6).reverse();
-
-  const bottomPieces = side === SIDES.LEFT ? state.boardPieces.slice(12, 18) : state.boardPieces.slice(18, 24);
   return (
     <>
       <section className={`board-side ${side}`}>

@@ -41,6 +41,14 @@
   box-shadow:
     inset 0 6px 10px rgba(0, 0, 0, 0.45),
     inset 0 -3px 6px rgba(255, 255, 255, 0.05);
+
+  /* Flex layout for horizontal bars stacked vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 8px;
 }
 
 /* =========================

@@ -1,5 +1,5 @@
 import './BarPieceStyles.css'
-import { Color } from "../../enums/PieceColor";
+import { Color } from '../../../enums/PieceColor';
 
 
 interface BarPieceProps {

@@ -1,0 +1,66 @@
+/* =========================
+   BEAR OFF TRAY PIECES
+   (Horizontal bars/cylinders, stacked vertically)
+   ========================= */
+
+.bear-off-piece {
+  position: relative;
+  width: 90%;
+  height: calc(93% / 15);
+  border-radius: 4px;
+  
+  flex-shrink: 0;
+  
+  transition: all 0.3s ease;
+}
+
+/* WHITE PIECE */
+.bear-off-piece--white {
+  background: linear-gradient(to right, #ffffff 0%, #f0f0f0 25%, #dcdcdc 75%, #b8b8b8 100%);
+  border: 1px solid #8a8a8a;
+  box-shadow:
+    2px 4px 8px rgba(0, 0, 0, 0.35),
+    inset -1px 0 3px rgba(0, 0, 0, 0.2),
+    inset 1px 0 3px rgba(255, 255, 255, 0.7);
+}
+
+/* BLACK PIECE */
+.bear-off-piece--black {
+  background: linear-gradient(to right, #4a4a4a 0%, #2a2a2a 25%, #0f0f0f 75%, #000000 100%);
+  border: 1px solid #1a1a1a;
+  box-shadow:
+    2px 4px 8px rgba(0, 0, 0, 0.6),
+    inset -1px 0 3px rgba(0, 0, 0, 0.8),
+    inset 1px 0 3px rgba(255, 255, 255, 0.15);
+}
+
+/* Inner shine/highlight effect */
+.bear-off-piece__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bear-off-piece__shine {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 30%;
+  height: 80%;
+  border-radius: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+/* Hover effect for visual feedback */
+.bear-off-piece:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+

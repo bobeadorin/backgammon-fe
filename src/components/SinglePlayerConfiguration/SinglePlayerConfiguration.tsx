@@ -3,8 +3,8 @@ import "./SinglePlayerConfigurationStyles.css";
 import { useNavigate } from "react-router-dom";
 import { useGameContext } from "../../hooks/UseGameContext";
 import { Color } from "../../enums/PieceColor";
-import { ACTIONS } from "../../game/gameReducer/gameActionTypes";
 import { GAME_STATE } from "../../enums/GameState";
+import { GameActionsService } from "../../game/gameReducer/gameActions";
 
 export default function SinglePlayerConfiguration() {
   const [player1Name, setPlayer1Name] = useState("");
@@ -26,39 +26,37 @@ export default function SinglePlayerConfiguration() {
     if (!canStart) return;
 
     if (whitePlayerSide === "player1") {
-      dispatch({
-        type: ACTIONS.SET_INTIAL_PLAYERS,
-        payload: {
-          whitePlayer: {
+      dispatch(
+        GameActionsService.setInitialPlayers(
+          {
             name: player1Name.trim(),
             color: Color.WHITE,
             diceRoll: [],
           },
-          blackPlayer: {
+          {
             name: player2Name.trim(),
             color: Color.BLACK,
             diceRoll: [],
           },
-        },
-      });
+        ),
+      );
     } else {
-      dispatch({
-        type: ACTIONS.SET_INTIAL_PLAYERS,
-        payload: {
-          whitePlayer: {
+      dispatch(
+        GameActionsService.setInitialPlayers(
+          {
             name: player2Name.trim(),
             color: Color.WHITE,
             diceRoll: [],
           },
-          blackPlayer: {
+          {
             name: player1Name.trim(),
             color: Color.BLACK,
             diceRoll: [],
           },
-        },
-      });
+        ),
+      );
     }
-    dispatch({ type: ACTIONS.SET_GAME_STATE, payload: GAME_STATE.INITIAL_ROLL });
+    dispatch(GameActionsService.setGameState(GAME_STATE.INITIAL_ROLL));
     navigate("/game");
   };
 
@@ -68,11 +66,6 @@ export default function SinglePlayerConfiguration() {
         activeCard === "player1" ? "light-left" : activeCard === "player2" ? "light-right" : ""
       }`}
     >
-      {/* <div className="beam beam-tl" />
-      <div className="beam beam-bl" />
-      <div className="beam beam-tr" />
-      <div className="beam beam-br" /> */}
-
       <h1 className="single_player_configuration__title">Single Player</h1>
 
       <div className="single_player_configuration__panel">

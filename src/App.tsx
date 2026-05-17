@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import GamePage from "./components/gamePage/GamePage";
 import Home from "./components/home/Home";
 import SinglePlayerConfiguration from "./components/SinglePlayerConfiguration/SinglePlayerConfiguration";
