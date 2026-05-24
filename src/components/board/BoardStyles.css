@@ -1,13 +1,11 @@
+@import "../../styles/cssVariables.css";
+
 .board {
-  width: 95rem;
-  height: 60rem;
+  width: var(--board-width);
+  height: var(--board-height);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 1900px) {
-  .board {
-    transform: scale(0.85);
-  }
+  transform: scale(var(--scale-factor));
+  transform-origin: center;
 }

@@ -12,6 +12,7 @@ import {
 import Dice from "../Dice";
 import "./DiceRollerStyles.css";
 import { GAME_STATE } from "../../../enums/GameState";
+import { GameActionsService } from "../../../game/gameReducer/gameActions";
 
 type DiceRollerProps = {
   values: number[];
@@ -34,22 +35,18 @@ export default function DiceRoller({
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // useEffect(() => {
-  //   if (!values.length) return;
+  useEffect(() => {
+    if (!values.length) return;
 
-  //   setTimeout(() => {
-  //     setIsRolling(true);
-  //   }, 0);
+    intervalRef.current = setInterval(startDiceIntervalAnimation, FRAME_SPEED_MS);
 
-  //   intervalRef.current = setInterval(startDiceIntervalAnimation, FRAME_SPEED_MS);
+    const timeout = setTimeout(finishAndSetDiceRoll, TOTAL_ROLL_TIME_MS);
 
-  //   const timeout = setTimeout(finishAndSetDiceRoll, TOTAL_ROLL_TIME_MS);
-
-  //   return () => {
-  //     if (intervalRef.current) clearInterval(intervalRef.current);
-  //     clearTimeout(timeout);
-  //   };
-  // }, [values]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      clearTimeout(timeout);
+    };
+  }, [values]);
 
   const startDiceIntervalAnimation = () => {
     setDie1({
@@ -71,15 +68,19 @@ export default function DiceRoller({
     setDie1({ ...FACE_COORDS[v1], value: v1 });
     setDie2({ ...FACE_COORDS[v2], value: v2 });
 
-    // setIsRolling(false);
+    
     if (onAnimationFinished) {
       onAnimationFinished();
     }
   };
 
+  const rollDice = () => {
+    dispatch(GameActionsService.rollDice());
+  };
+
   return (
     <div className={isLeft ? "dice-container-left" : "dice-container"}>
-      {/* {die1 && <Dice isRolling={state.isRolling} coordonates={die1} />}
+      {die1 && <Dice isRolling={state.isRolling} coordonates={die1} />}
       {die2 && <Dice isRolling={state.isRolling} coordonates={die2} />}
       {!state.isRolling && die1 && die2 && die1?.value == die2?.value && (
         <>
@@ -92,11 +93,11 @@ export default function DiceRoller({
         <button
           onClick={buttonCallback ?? rollDice}
           className="roll-btn"
-          disabled={isRolling || (diceRoll.length > 0 && gameState === GameState.GAME_RUNNING)}
+          disabled={state.isRolling || (state.diceRoll.length > 0 && state.gameState === GAME_STATE.GAME_RUNNING)}
         >
-          {isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
+          {state.isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
         </button>
-      )} */}
+      )}
     </div>
   );
 }

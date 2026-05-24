@@ -1,0 +1,176 @@
+/* ========================================
+   CSS VARIABLES - DESIGN SYSTEM
+   ======================================== */
+
+:root {
+  /* ── BOARD DIMENSIONS ── */
+  --board-width: 95rem;
+  --board-height: 60rem;
+  --board-side-height: 60rem;
+  --board-side-border: 30px;
+  
+  /* ── PIECE DIMENSIONS ── */
+  --piece-size: 60px;
+  --piece-border: 2px;
+  --piece-transition: 0.25s ease;
+  --piece-shadow-inset-top: 10px 18px;
+  --piece-shadow-inset-bottom: 4px 10px;
+  
+  /* ── DICE DIMENSIONS ── */
+  --dice-sprite-size: 128px;
+  --dice-container-gap: 1.5rem;
+  --dice-container-padding: 2.5rem;
+  --dice-container-border-radius: 20px;
+  --dice-container-top: 45%;
+  --dice-container-left-center: 56%;
+  --dice-container-left: 20%;
+  --dice-button-padding: 1rem 2.5rem;
+  --dice-button-font-size: 1.2rem;
+  --dice-button-border-radius: 50px;
+  --dice-button-hover-offset: 3px;
+  
+  /* ── TRIANGLE DIMENSIONS ── */
+  --triangle-width: 110px;
+  --triangle-height: 300px;
+  --triangle-border-left: 50px;
+  --triangle-border-right: 60px;
+  --triangle-left-offset: 50%;
+  
+  /* ── BEAR OFF TRAY ── */
+  --bear-off-tray-width: 7rem;
+  --bear-off-tray-padding: 10px;
+  --bear-off-tray-border: 10px;
+  --bear-off-tray-border-top: 19px;
+  --bear-off-tray-border-bottom: 23px;
+  --bear-off-tray-piece-container-width: 90%;
+  --bear-off-tray-piece-container-height: 45%;
+  --bear-off-tray-piece-border: 3px;
+  --bear-off-tray-piece-padding: 8px;
+  
+  /* ── BAR CONTAINER ── */
+  --bar-container-width: 80px;
+  --bar-container-height: 80vh;
+  --bar-container-top: 50%;
+  --bar-container-left: 47.5%;
+  --bar-container-gap: 10px;
+  --bar-outline: 5px solid red;
+  
+  /* ── GAME DASHBOARD ── */
+  --dashboard-height: 90%;
+  --dashboard-min-width: 20%;
+  --dashboard-border: 3px solid black;
+  --dashboard-padding: 1rem;
+  --dashboard-border-radius: 16px;
+  
+  /* ── HOME PAGE ── */
+  --home-title-font-size: 4.5rem;
+  --home-title-letter-spacing: 0.2rem;
+  --home-selection-width: 70rem;
+  --home-selection-height: 40rem;
+  --home-selection-border-radius: 12px;
+  
+  /* ── SPACING ── */
+  --spacing-xs: 0;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-gap-triangles: 22.5rem;
+  
+  /* ── BORDER RADIUS ── */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 50%;
+  
+  /* ── COLORS - WOOD/DARK ── */
+  --color-wood-dark: rgb(48, 15, 15);
+  --color-wood-medium: rgb(70, 25, 20);
+  --color-dashboard-bg: rgb(59, 40, 11);
+  
+  /* ── COLORS - PIECE ── */
+  --color-piece-brown-dark: rgba(95, 56, 32, 1);
+  --color-piece-brown-medium: rgba(145, 102, 63, 1);
+  --color-piece-brown-light: rgba(110, 65, 22, 1);
+  --color-piece-brown-lightest: rgba(80, 40, 18, 1);
+  --color-piece-white: rgba(255, 255, 255, 0.95);
+  --color-piece-black: rgba(8, 8, 8, 1);
+  
+  /* ── COLORS - TRIANGLE ── */
+  --color-triangle-dark: #8b0000;
+  --color-triangle-light: #654321;
+  --color-triangle-hover-dark: #a01f1f;
+  --color-triangle-hover-light: #91704f;
+  
+  /* ── COLORS - BUTTON ── */
+  --color-button-gold-light: #ffcc00;
+  --color-button-gold-dark: #d4ab00;
+  
+  /* ── Z-INDEX ── */
+  --z-piece: 10;
+  --z-dice: 1000;
+  --z-bar: 10000;
+  
+  /* ── SHADOWS ── */
+  --shadow-sm: 2px 4px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 18px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 22px 28px rgba(0, 0, 0, 0.35);
+  
+  /* ── FONT SIZES ── */
+  --font-size-button: 1.2rem;
+  --font-size-title: 4.5rem;
+  --font-weight-heavy: 800;
+  
+  /* ── RESPONSIVE SCALE ── */
+  --scale-factor: 1;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Large screens (1900px and below) */
+@media (max-width: 2500px) {
+  :root {
+    --scale-factor: 0.85;
+  }
+}
+
+/* Medium-large screens (1500px and below) */
+@media (max-width: 1500px) {
+  :root {
+    --scale-factor: 0.75;
+  }
+}
+
+/* Medium screens (1200px and below) */
+@media (max-width: 1200px) {
+  :root {
+    --scale-factor: 0.65;
+  }
+}
+
+/* Tablet landscape (1024px and below) */
+@media (max-width: 1024px) {
+  :root {
+    --scale-factor: 0.55;
+  }
+}
+
+/* Tablet portrait (768px and below) */
+@media (max-width: 768px) {
+  :root {
+    --scale-factor: 0.45;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  :root {
+    --scale-factor: 0.35;
+  }
+}

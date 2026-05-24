@@ -1,10 +1,12 @@
+@import "../../styles/cssVariables.css";
+
 /* ── GameDashboardStyles.css ──────────────────────────────────────────────── */
 
 .boardDashBoard-container {
-  height: 90%;
-  min-width: 20%;
-  border: 3px solid black;
-  background-color: rgb(59, 40, 11);
+  height: var(--dashboard-height);
+  min-width: var(--dashboard-min-width);
+  border: var(--dashboard-border);
+  background-color: var(--color-dashboard-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,8 +19,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border-radius: 16px;
+  padding: var(--dashboard-padding);
+  border-radius: var(--dashboard-border-radius);
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }

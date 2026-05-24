@@ -1,17 +1,20 @@
+@import "../../styles/cssVariables.css";
+
 .bar-container {
   position: absolute;
-  top: 50%;
-  left: 47.5%;
+  top: var(--bar-container-top);
+  left: var(--bar-container-left);
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80vh;
+  width: var(--bar-container-width);
+  height: var(--bar-container-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  z-index: 10000;
-  outline: 5px solid red;
+  z-index: var(--z-bar);
+  outline: var(--bar-outline);
 }
+
 .bar-container-piece-holder {
   width: 100%;
   flex: 1;
@@ -19,5 +22,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--bar-container-gap);
 }

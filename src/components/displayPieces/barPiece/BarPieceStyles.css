@@ -1,21 +1,23 @@
+@import "../../../styles/cssVariables.css";
+
 .bar-piece {
-  width: 60px;
-  height: 60px;
+  width: var(--piece-size);
+  height: var(--piece-size);
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
+  z-index: var(--z-piece);
   position: relative;
   flex-shrink: 0;
 
   background:
     radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.65), transparent 55%),
-    linear-gradient(120deg, rgba(95, 56, 32, 1) 0%, rgba(145, 102, 63, 1) 35%, rgba(110, 65, 22, 1) 70%, rgba(80, 40, 18, 1) 100%);
+    linear-gradient(120deg, var(--color-piece-brown-dark) 0%, var(--color-piece-brown-medium) 35%, var(--color-piece-brown-light) 70%, var(--color-piece-brown-lightest) 100%);
 
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border: var(--piece-border) solid rgba(255, 255, 255, 0.6);
   box-shadow:
-    inset 0 10px 18px rgba(0, 0, 0, 0.35),
-    inset 0 -4px 10px rgba(255, 255, 255, 0.15),
-    0 12px 18px rgba(0, 0, 0, 0.25);
+    inset 0 var(--piece-shadow-inset-top) rgba(0, 0, 0, 0.35),
+    inset 0 -var(--piece-shadow-inset-bottom) rgba(255, 255, 255, 0.15),
+    var(--shadow-lg);
 
   transition: transform 0.15s ease;
 }
@@ -51,12 +53,12 @@
   background:
     radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.95), rgba(240, 227, 210, 1) 40%, rgba(200, 175, 140, 1) 70%),
     linear-gradient(120deg, rgba(220, 190, 155, 1) 0%, rgba(190, 155, 115, 1) 45%, rgba(165, 130, 95, 1) 100%);
-  border: 2px solid rgba(80, 60, 40, 0.4);
+  border: var(--piece-border) solid rgba(80, 60, 40, 0.4);
 }
 
 .bar-piece.black {
   background:
-    radial-gradient(circle at 40% 30%, rgba(40, 40, 40, 0.95), rgba(12, 12, 12, 1) 50%, rgba(8, 8, 8, 1) 85%),
-    linear-gradient(120deg, rgba(25, 25, 25, 1) 0%, rgba(18, 18, 18, 1) 40%, rgba(8, 8, 8, 1) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.25);
+    radial-gradient(circle at 40% 30%, rgba(40, 40, 40, 0.95), rgba(12, 12, 12, 1) 50%, var(--color-piece-black) 85%),
+    linear-gradient(120deg, rgba(25, 25, 25, 1) 0%, rgba(18, 18, 18, 1) 40%, var(--color-piece-black) 100%);
+  border: var(--piece-border) solid rgba(255, 255, 255, 0.25);
 }

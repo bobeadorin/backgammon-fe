@@ -29,7 +29,13 @@ function computeNextState(state: GameStateType, action: GameAction): GameStateTy
       //
       break;
     case ACTIONS.SET_INITIAL_PLAYERS:
-      return setInitialPlayers(state);
+      return {
+        ...state,
+        whitePlayer: action.payload.whitePlayer,
+        blackPlayer: action.payload.blackPlayer,
+      };
+    case ACTIONS.SET_CURRENT_PLAYER:
+      return setCurrentPlayer(state);
     default:
       return state;
   }
@@ -38,7 +44,7 @@ function computeNextState(state: GameStateType, action: GameAction): GameStateTy
 
 function startInitialRoll(state: GameStateType): GameStateType {
   const initialRoll = GameEngine.getInitialRoll();
-
+  console.log(initialRoll)
   return {
     ...state,
     initialDiceRoll: {

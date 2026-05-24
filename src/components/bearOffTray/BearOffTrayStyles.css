@@ -1,20 +1,22 @@
+@import "../../styles/cssVariables.css";
+
 .bearOffTray-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 
-  width: 7rem;
+  width: var(--bear-off-tray-width);
   height: 100%;
 
-  padding: 10px;
+  padding: var(--bear-off-tray-padding);
 
   /* SIMPLE BASE COLOR (no texture dominance) */
-  background-color: rgb(48, 15, 15);
+  background-color: var(--color-wood-dark);
   /* CLEAR BORDER FRAME */
-  border: 10px solid rgb(48, 15, 15);
-  border-top: 19px solid rgb(48, 15, 15);
-  border-bottom: 23px solid rgb(48, 15, 15);
+  border: var(--bear-off-tray-border) solid var(--color-wood-dark);
+  border-top: var(--bear-off-tray-border-top) solid var(--color-wood-dark);
+  border-bottom: var(--bear-off-tray-border-bottom) solid var(--color-wood-dark);
 
   box-shadow:
     inset 0 0 18px rgba(0, 0, 0, 0.6),
@@ -26,16 +28,16 @@
    ========================= */
 
 .bearOffTray-piece-container {
-  width: 90%;
-  height: 45%;
+  width: var(--bear-off-tray-piece-container-width);
+  height: var(--bear-off-tray-piece-container-height);
 
   position: relative;
 
   /* lighter inner tone so slots are visible */
-  background-color: rgb(70, 25, 20);
+  background-color: var(--color-wood-medium);
 
   /* visible slot border */
-  border: 3px solid rgba(0, 0, 0, 0.7);
+  border: var(--bear-off-tray-piece-border) solid rgba(0, 0, 0, 0.7);
 
   /* depth but not overpowering */
   box-shadow:
@@ -47,8 +49,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 0;
-  padding: 8px;
+  gap: var(--spacing-xs);
+  padding: var(--bear-off-tray-piece-padding);
 }
 
 /* =========================

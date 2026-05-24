@@ -27,12 +27,12 @@ export class GameEngine {
 
     if (GameEngine.isTie(white, black)) return this.getInitialRoll();
 
-    if (white[0] === white[1]) return { white: [...white, ...white], black };
-    if (black[0] === black[1]) return { black: [...black, ...black], white };
+    const finalWhite = white[0] === white[1] ? [...white, ...white] : white;
+    const finalBlack = black[0] === black[1] ? [...black, ...black] : black;
 
     return {
-      white,
-      black,
+      white: finalWhite,
+      black: finalBlack,
     };
   }
 
@@ -40,8 +40,17 @@ export class GameEngine {
     blackRoll: number[],
     whiteRoll: number[],
   ): { winnerColor: Color; isDouble: boolean; diceRoll: number[] } {
-    if (blackRoll.length === 4) return { winnerColor: Color.BLACK, isDouble: true, diceRoll: blackRoll };
-    if (whiteRoll.length === 4) return { winnerColor: Color.WHITE, isDouble: true, diceRoll: whiteRoll };
+    const whiteDouble = whiteRoll.length === 4;
+    const blackDouble = blackRoll.length === 4;
+
+    if (whiteDouble && blackDouble) {
+      return whiteRoll[0] > blackRoll[0]
+        ? { winnerColor: Color.WHITE, isDouble: true, diceRoll: whiteRoll }
+        : { winnerColor: Color.BLACK, isDouble: true, diceRoll: blackRoll };
+    }
+
+    if (whiteDouble) return { winnerColor: Color.WHITE, isDouble: true, diceRoll: whiteRoll };
+    if (blackDouble) return { winnerColor: Color.BLACK, isDouble: true, diceRoll: blackRoll };
 
     const whiteSum = whiteRoll.reduce((acc, num) => acc + num, 0);
     const blackSum = blackRoll.reduce((acc, num) => acc + num, 0);
@@ -62,6 +71,20 @@ export class GameEngine {
   }
 
   public static isTie(white: number[], black: number[]) {
-    return (white[0] === white[1] && white[0] === black[1]) || (white[0] === black[0] && white[1] === black[1]);
+    const whiteDouble = white[0] === white[1];
+    const blackDouble = black[0] === black[1];
+
+    if (whiteDouble && blackDouble) {
+      return white[0] === black[0]; // Tie if they both rolled the exact same double
+    }
+
+    if (whiteDouble || blackDouble) {
+      return false; // Only one player rolled a double, so someone clearly won
+    }
+
+    const whiteSum = white[0] + white[1];
+    const blackSum = black[0] + black[1];
+
+    return whiteSum === blackSum;
   }
 }

@@ -1,32 +1,34 @@
+@import "../../styles/cssVariables.css";
+
 /* Container stays column to keep the row of dice above the button */
 .dice-container {
   position: absolute;
-  top: 45%;
-  left: 55%;
+  top: var(--dice-container-top);
+  left: var(--dice-container-left-center);
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: var(--z-dice);
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 2.5rem;
-  border-radius: 20px;
+  gap: var(--dice-container-gap);
+  padding: var(--dice-container-padding);
+  border-radius: var(--dice-container-border-radius);
   width: fit-content;
-  margin: 2rem auto;
+  margin: var(--spacing-xl) auto;
 }
 
 .dice-container-left {
   position: absolute;
-  top: 45%;
-  left: 20%;
+  top: var(--dice-container-top);
+  left: var(--dice-container-left);
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: var(--z-dice);
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 2.5rem;
-  border-radius: 20px;
+  gap: var(--dice-container-gap);
+  padding: var(--dice-container-padding);
+  border-radius: var(--dice-container-border-radius);
   width: fit-content;
-  margin: 2rem auto;
+  margin: var(--spacing-xl) auto;
 }
 
 
@@ -34,7 +36,7 @@
 .dice-row {
   display: flex;
   flex-direction: row;
-  gap: 0rem;
+  gap: var(--spacing-xs);
   justify-content: center;
   align-items: center;
 }
@@ -46,8 +48,8 @@
 }
 
 .dice-sprite {
-  width: 128px;
-  height: 128px;
+  width: var(--dice-sprite-size);
+  height: var(--dice-sprite-size);
   background-image: url("src/assets/dice_sheet.png");
   background-size: 1600% 1600%;
   background-repeat: no-repeat;
@@ -69,20 +71,20 @@
 
 /* Button styles remain the same as your provided CSS */
 .roll-btn {
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 800;
+  padding: var(--dice-button-padding);
+  font-size: var(--dice-button-font-size);
+  font-weight: var(--font-weight-heavy);
   cursor: pointer;
-  background: linear-gradient(145deg, #ffcc00, #d4ab00);
+  background: linear-gradient(145deg, var(--color-button-gold-light), var(--color-button-gold-dark));
   border: none;
-  border-radius: 50px;
+  border-radius: var(--dice-button-border-radius);
   color: #000;
   transition: all 0.2s;
   text-transform: uppercase;
 }
 
 .roll-btn:hover:not(:disabled) {
-  transform: translateY(-3px);
+  transform: translateY(-var(--dice-button-hover-offset));
   box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
 }
 

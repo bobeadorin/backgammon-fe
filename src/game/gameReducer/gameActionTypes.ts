@@ -28,7 +28,8 @@ export type GameAction =
   | { type: ACTIONS.SET_INITIAL_PLAYERS; payload: { whitePlayer: Player; blackPlayer: Player } }
   | { type: ACTIONS.SET_GAMEMODE; payload: GAME_MODE }
   | { type: ACTIONS.SET_GAME_STATE; payload: GAME_STATE }
-  | { type: ACTIONS.START_INITIAL_DICE_ROLL };
+  | { type: ACTIONS.START_INITIAL_DICE_ROLL }
+  | { type: ACTIONS.SET_CURRENT_PLAYER };
 
 export enum GAME_MODE {
   SINGLEPLAYER = "SINGLEPLAYER",

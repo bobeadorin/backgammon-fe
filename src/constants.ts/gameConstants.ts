@@ -3,9 +3,9 @@ import { Color } from "../enums/PieceColor";
 import { generateStandardBoard } from "../game/gameInitialization/gameInitialization";
 import { GameStateType } from "../types/gameTypes";
 
-// const BOARD_BAR = 26;
-// const WHITE_BEAR_OFF_TRAY = 0;
-// const BLACK_BEAR_OFF_TRAY = 25;
+export const BOARD_BAR_INDEX = 26;
+export const WHITE_BEAR_OFF_TRAY_INDEX = 0;
+export const BLACK_BEAR_OFF_TRAY_INDEX = 25;
 
 export const STARTING_POSITIONS_WHITE = [
   { index: 1, count: 2, color: Color.WHITE },

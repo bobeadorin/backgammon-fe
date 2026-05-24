@@ -1,3 +1,5 @@
+@import "../../styles/cssVariables.css";
+
 /* =========================
    BASE CONTAINER
 ========================= */
@@ -10,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 
   background: radial-gradient(circle at top, #141e30, #000);
   overflow: hidden;
@@ -63,10 +65,10 @@
 ========================= */
 
 .home__title {
-  font-size: 4.5rem;
+  font-size: var(--home-title-font-size);
   color: #f5e6a3;
-  font-weight: 800;
-  letter-spacing: 0.2rem;
+  font-weight: var(--font-weight-heavy);
+  letter-spacing: var(--home-title-letter-spacing);
 
   animation: glowPulse 4s ease-in-out infinite;
 }
@@ -94,13 +96,109 @@
 ========================= */
 
 .home__selection_container {
-  width: 70rem;
-  height: 40rem;
+  width: var(--home-selection-width);
+  height: var(--home-selection-height);
   background: linear-gradient(145deg, #fff2ab, #e6d98f);
-  border-radius: 12px;
+  border-radius: var(--home-selection-border-radius);
   display: flex;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* image side */
+.home__selection_container img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.1);
+}
+
+/* =========================
+   BUTTON PANEL
+========================= */
+
+.home__buttons {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+
+  background: linear-gradient(160deg, #1e1e1e, #2c2c2c);
+  position: relative;
+  overflow: hidden;
+
+  animation: lightPulse 5s ease-in-out infinite;
+}
+
+/* subtle grid texture */
+.home__buttons::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* slight brightness variation */
+@keyframes lightPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.home__buttons button {
+  padding: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+  color: #f5e6a3;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* stagger animation */
+.home__buttons button:nth-child(1) { animation-delay: 0.1s; }
+.home__buttons button:nth-child(2) { animation-delay: 0.2s; }
+.home__buttons button:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* hover */
+.home__buttons button:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: linear-gradient(145deg, #3a3a3a, #222);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+/* click */
+.home__buttons button:active {
+  transform: scale(0.96);
 }
 
 /* image side */

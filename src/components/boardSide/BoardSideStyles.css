@@ -1,12 +1,14 @@
+@import "../../styles/cssVariables.css";
+
 .board-side{
-    height: 60rem;
-    border: 30px solid rgb(48, 15, 15);
+    height: var(--board-side-height);
+    border: var(--board-side-border) solid var(--color-wood-dark);
     background-color: blanchedalmond;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 22.5rem;
+    gap: var(--spacing-gap-triangles);
     background-image: url('src/assets/board-wood-background.jpg');
     background-position: center;
     background-size: cover;    

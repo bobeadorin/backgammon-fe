@@ -56,7 +56,7 @@ export default function SinglePlayerConfiguration() {
         ),
       );
     }
-    dispatch(GameActionsService.setGameState(GAME_STATE.INITIAL_ROLL));
+    dispatch(GameActionsService.setGameState(GAME_STATE.WAITING_FOR_INITIAL_ROLL));
     navigate("/game");
   };
 

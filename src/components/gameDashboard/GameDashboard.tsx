@@ -8,6 +8,9 @@ export default function GameDashboard() {
 
   return (
     <section className="boardDashBoard-container" style={{ color: "white", fontSize: "50px" }}>
+      <div>
+        {state.gameState}
+      </div>
       <div className="player-dashboard-container">
         <div> {!state.isRolling ? playerData : "isRolling"}</div>
         {!state.isRolling && state.diceRoll.map((value, index) => <span key={index}> {value}</span>)}
