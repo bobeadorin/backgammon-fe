@@ -1,4 +1,4 @@
-import { GAME_STATE } from "../enums/GameState";
+import { GAME_PHASE } from "../enums/GameState";
 import { Color } from "../enums/PieceColor";
 import { GAME_MODE } from "../game/gameReducer/gameActionTypes";
 
@@ -12,7 +12,7 @@ export interface Player {
 
 export type GameStateType = {
   gameMode: GAME_MODE | null;
-  gameState: GAME_STATE;
+  gamePhase: GAME_PHASE;
   currentPlayer: Player | null;
   whitePlayer: Player;
   blackPlayer: Player;
@@ -30,4 +30,3 @@ export type GameBoard = {
   pieces: PieceFormat[];
   possibleMoves: number[];
 }[];
-

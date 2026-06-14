@@ -3,7 +3,7 @@ import "./SinglePlayerConfigurationStyles.css";
 import { useNavigate } from "react-router-dom";
 import { useGameContext } from "../../hooks/UseGameContext";
 import { Color } from "../../enums/PieceColor";
-import { GAME_STATE } from "../../enums/GameState";
+import { GAME_PHASE } from "../../enums/GameState";
 import { GameActionsService } from "../../game/gameReducer/gameActions";
 
 export default function SinglePlayerConfiguration() {
@@ -56,7 +56,7 @@ export default function SinglePlayerConfiguration() {
         ),
       );
     }
-    dispatch(GameActionsService.setGameState(GAME_STATE.WAITING_FOR_INITIAL_ROLL));
+    dispatch(GameActionsService.setGameState(GAME_PHASE.INITIAL_ROLL));
     navigate("/game");
   };
 

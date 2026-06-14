@@ -1,4 +1,4 @@
-import { GAME_STATE } from "../enums/GameState";
+import { GAME_PHASE } from "../enums/GameState";
 import { Color } from "../enums/PieceColor";
 import { generateStandardBoard } from "../game/gameInitialization/gameInitialization";
 import { GameStateType } from "../types/gameTypes";
@@ -31,7 +31,7 @@ export const STARTING_POSITIONS = [
 
 export const initialGameState: GameStateType = {
   gameMode: null,
-  gameState: GAME_STATE.WAITING_FOR_GAMEMODE,
+  gamePhase: GAME_PHASE.SETUP,
   currentPlayer: null,
   whitePlayer: { name: "white", color: Color.WHITE, diceRoll: [] },
   blackPlayer: { name: "black", color: Color.BLACK, diceRoll: [] },

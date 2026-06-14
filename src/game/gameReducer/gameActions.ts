@@ -1,6 +1,6 @@
 import { Player } from "../../types/gameTypes";
 import { ACTIONS, GAME_MODE, GameAction } from "./gameActionTypes";
-import { GAME_STATE } from "../../enums/GameState";
+import { GAME_PHASE } from "../../enums/GameState";
 import { PieceFormat } from "../../types/gameTypes";
 
 export class GameActionsService {
@@ -18,7 +18,7 @@ export class GameActionsService {
     };
   }
 
-  public static setGameState(gameState: GAME_STATE): GameAction {
+  public static setGameState(gameState: GAME_PHASE): GameAction {
     return {
       type: ACTIONS.SET_GAME_STATE,
       payload: gameState,

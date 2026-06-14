@@ -9,7 +9,7 @@ export default function GameDashboard() {
   return (
     <section className="boardDashBoard-container" style={{ color: "white", fontSize: "50px" }}>
       <div>
-        {state.gameState}
+        {state.gamePhase}
       </div>
       <div className="player-dashboard-container">
         <div> {!state.isRolling ? playerData : "isRolling"}</div>

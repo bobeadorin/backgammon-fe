@@ -1,4 +1,4 @@
-import { GAME_STATE } from "../../enums/GameState";
+import { GAME_PHASE } from "../../enums/GameState";
 import { PieceFormat, Player } from "../../types/gameTypes";
 
 export enum ACTIONS {
@@ -16,7 +16,6 @@ export enum ACTIONS {
   SET_HIT_PIECE = "SET_HIT_PIECE",
   SET_IS_ROLLING = "SET_IS_ROLLING",
   SET_GAME_STATE = "SET_GAME_STATE",
-  WAITING_FOR_INITIAL_ROLL = "WAITING_FOR_INITIAL_ROLL",
   START_INITIAL_DICE_ROLL = "GET_INTIAL_DICE_ROLL",
 }
 
@@ -27,7 +26,7 @@ export type GameAction =
   | { type: ACTIONS.CONSUME_DICE; payload: number }
   | { type: ACTIONS.SET_INITIAL_PLAYERS; payload: { whitePlayer: Player; blackPlayer: Player } }
   | { type: ACTIONS.SET_GAMEMODE; payload: GAME_MODE }
-  | { type: ACTIONS.SET_GAME_STATE; payload: GAME_STATE }
+  | { type: ACTIONS.SET_GAME_STATE; payload: GAME_PHASE }
   | { type: ACTIONS.START_INITIAL_DICE_ROLL }
   | { type: ACTIONS.SET_CURRENT_PLAYER };
 

@@ -1,4 +1,4 @@
-import { GAME_STATE } from "../../enums/GameState";
+import { GAME_PHASE } from "../../enums/GameState";
 import { GameStateType } from "../../types/gameTypes";
 import { ACTIONS, GAME_MODE, GameAction } from "./gameActionTypes";
 import LocalStorageManager from "../../utils/LocalStorageManager/LocalStorageManager";
@@ -51,7 +51,7 @@ function startInitialRoll(state: GameStateType): GameStateType {
       white: initialRoll.white,
       black: initialRoll.black,
     },
-    gameState: GAME_STATE.WAITING_FOR_INITIAL_ROLL,
+    gamePhase: GAME_PHASE.INITIAL_ROLL,
   };
 }
 
@@ -73,7 +73,7 @@ function setInitialPlayers(state: GameStateType): GameStateType {
     return {
       ...state,
       currentPlayer: { name: winnerName, color: winner.winnerColor, diceRoll: winner.diceRoll },
-      gameState: GAME_STATE.GAME_RUNNING,
+      gamePhase: GAME_PHASE.PLAYING,
     };
   }
 
@@ -84,7 +84,7 @@ function setInitialPlayers(state: GameStateType): GameStateType {
       color: winner.winnerColor,
       diceRoll: [],
     },
-    gameState: GAME_STATE.WAITING_FOR_INITIAL_ROLL,
+    gamePhase: GAME_PHASE.INITIAL_ROLL,
   };
 }
 
@@ -92,11 +92,11 @@ function setGameMode(state: GameStateType, payload: GAME_MODE) {
   return {
     ...state,
     GAME_MODE: payload,
-    gameState: GAME_STATE.WAITING_FOR_PLAYER_CONFIGURATION,
+    gameState: GAME_PHASE.SETUP,
   };
 }
 
-function setGameState(state: GameStateType, payload: GAME_STATE) {
+function setGameState(state: GameStateType, payload: GAME_PHASE) {
   return {
     ...state,
     gameState: payload,

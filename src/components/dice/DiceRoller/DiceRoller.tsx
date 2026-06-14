@@ -11,7 +11,7 @@ import {
 } from "../constants/dice-constants";
 import Dice from "../Dice";
 import "./DiceRollerStyles.css";
-import { GAME_STATE } from "../../../enums/GameState";
+import { GAME_PHASE } from "../../../enums/GameState";
 import { GameActionsService } from "../../../game/gameReducer/gameActions";
 
 type DiceRollerProps = {
@@ -93,7 +93,7 @@ export default function DiceRoller({
         <button
           onClick={buttonCallback ?? rollDice}
           className="roll-btn"
-          disabled={state.isRolling || (state.diceRoll.length > 0 && state.gameState === GAME_STATE.GAME_RUNNING)}
+          disabled={state.isRolling || (state.diceRoll.length > 0 && state.gamePhase === GAME_PHASE.GAME_RUNNING)}
         >
           {state.isRolling ? ROLLING_TEXT : ROLL_DICE_TEXT}
         </button>
