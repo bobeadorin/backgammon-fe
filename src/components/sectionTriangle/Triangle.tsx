@@ -2,7 +2,7 @@ import "./TriangleStyles.css";
 import Piece from "../piece/Piece";
 import type { PieceFormat } from "../../types/gameTypes";
 import { useGameContext } from "../../hooks/UseGameContext";
-import { GameActionsService } from "../../game/gameReducer/gameActions";
+import { GameActionCreator } from "../../game/gameReducer/gameActions";
 
 type TriangleProps = {
   isDown: boolean;
@@ -18,10 +18,10 @@ export default function Triangle({ isDown, pieces, id }: TriangleProps) {
     if(!state.selectedPiece && pieces.length === 0 ) return;
 
     if (!state.selectedPiece) {
-      dispatch(GameActionsService.selectPiece(pieces[pieces.length - 1]));
+      dispatch(GameActionCreator.selectPiece(pieces[pieces.length - 1]));
       return;
     }
-    dispatch(GameActionsService.movePiece(state.selectedPiece.position, id));
+    dispatch(GameActionCreator.movePiece(state.selectedPiece.position, id));
   };
 
   return (

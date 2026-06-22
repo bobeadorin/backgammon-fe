@@ -13,7 +13,7 @@ import {
 import Dice from "../Dice";
 import { TURN_PHASE } from "../../../enums/GameState";
 import "./DiceRollerStyles.css";
-import { GameActionsService } from "../../../game/gameReducer/gameActions";
+import { GameActionCreator } from "../../../game/gameReducer/gameActions";
 import { DiceRoll } from "../../../types/gameTypes";
 
 type DiceRollerProps = {
@@ -100,7 +100,7 @@ export default function DiceRoller({
   };
 
   const rollDice = () => {
-    dispatch(GameActionsService.rollDice());
+    dispatch(GameActionCreator.rollDice());
   };
 
   return (

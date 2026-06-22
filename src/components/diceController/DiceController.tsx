@@ -1,5 +1,5 @@
 import { GAME_PHASE } from "../../enums/GameState";
-import { GameActionsService } from "../../game/gameReducer/gameActions";
+import { GameActionCreator } from "../../game/gameReducer/gameActions";
 import { useGameContext } from "../../hooks/UseGameContext";
 import { ROLL_DICE_TEXT } from "../dice/constants/dice-constants";
 import DiceRoller from "../dice/DiceRoller/DiceRoller";
@@ -8,12 +8,12 @@ export default function DiceController() {
   const { state, dispatch } = useGameContext();
 
   const handleIntialRoll = () => {
-    dispatch(GameActionsService.startRollingAnimation());
-    dispatch(GameActionsService.rollInitialDice());
+    dispatch(GameActionCreator.startRollingAnimation());
+    dispatch(GameActionCreator.rollInitialDice());
 
     setTimeout(() => {
-      dispatch(GameActionsService.stopRollingAnimation());
-      dispatch(GameActionsService.setCurrentPlayer());
+      dispatch(GameActionCreator.stopRollingAnimation());
+      dispatch(GameActionCreator.setCurrentPlayer());
     }, 4000);
   };
 

@@ -6,7 +6,6 @@ export enum ACTIONS {
   ROLL_DICE = "ROLL_DICE",
   SELECT_PIECE = "SELECT_PIECE",
   MOVE_PIECE = "MOVE_PIECE",
-  CONSUME_DICE = "CONSUME_DICE",
   SET_INITIAL_PLAYERS = "SET_INTIAL_PLAYERS",
   SET_INITAL_ROLL = "SET_INITAL_ROLL",
   SET_CURRENT_PLAYER = "SET_CURRENT_PLAYER",
@@ -26,7 +25,6 @@ export type GameAction =
   | { type: ACTIONS.ROLL_DICE }
   | { type: ACTIONS.SELECT_PIECE; payload: PieceFormat }
   | { type: ACTIONS.MOVE_PIECE; payload: { from: number; to: number } }
-  | { type: ACTIONS.CONSUME_DICE; payload: number }
   | { type: ACTIONS.SET_INITIAL_PLAYERS; payload: { whitePlayer: Player; blackPlayer: Player } }
   | { type: ACTIONS.SET_GAMEMODE; payload: GAME_MODE }
   | { type: ACTIONS.SET_GAME_PHASE; payload: GAME_PHASE }

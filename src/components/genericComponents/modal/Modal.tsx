@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ModalStyles.css";
 import { useGameContext } from "../../../hooks/UseGameContext";
-import { GameActionsService } from "../../../game/gameReducer/gameActions";
+import { GameActionCreator } from "../../../game/gameReducer/gameActions";
 import { useNavigate } from "react-router-dom";
 
 export default function Modal() {
@@ -14,7 +14,7 @@ export default function Modal() {
   };
 
   const handleNoBtn = () => {
-    dispatch(GameActionsService.resetGame());
+    dispatch(GameActionCreator.resetGame());
     setShowModal(false);
     navigate("/matchConfiguration");
   };

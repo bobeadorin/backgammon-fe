@@ -3,7 +3,7 @@ import { ACTIONS, GAME_MODE, GameAction } from "./gameActionTypes";
 import { GAME_PHASE } from "../../enums/GameState";
 import { PieceFormat } from "../../types/gameTypes";
 
-export class GameActionsService {
+export class GameActionCreator {
   public static setGameMode(gameMode: GAME_MODE): GameAction {
     return {
       type: ACTIONS.SET_GAMEMODE,
@@ -59,13 +59,6 @@ export class GameActionsService {
   public static resetGame(): GameAction {
     return {
       type: ACTIONS.RESET_GAME,
-    };
-  }
-
-  public static consumeDice(diceValue: number): GameAction {
-    return {
-      type: ACTIONS.CONSUME_DICE,
-      payload: diceValue,
     };
   }
 

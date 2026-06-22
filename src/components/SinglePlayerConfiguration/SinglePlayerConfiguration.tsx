@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGameContext } from "../../hooks/UseGameContext";
 import { Color } from "../../enums/PieceColor";
 import { GAME_PHASE } from "../../enums/GameState";
-import { GameActionsService } from "../../game/gameReducer/gameActions";
+import { GameActionCreator } from "../../game/gameReducer/gameActions";
 
 export default function SinglePlayerConfiguration() {
   const [player1Name, setPlayer1Name] = useState("");
@@ -27,7 +27,7 @@ export default function SinglePlayerConfiguration() {
 
     if (whitePlayerSide === "player1") {
       dispatch(
-        GameActionsService.setInitialPlayers(
+        GameActionCreator.setInitialPlayers(
           {
             name: player1Name.trim(),
             color: Color.WHITE,
@@ -42,7 +42,7 @@ export default function SinglePlayerConfiguration() {
       );
     } else {
       dispatch(
-        GameActionsService.setInitialPlayers(
+        GameActionCreator.setInitialPlayers(
           {
             name: player2Name.trim(),
             color: Color.WHITE,
@@ -56,7 +56,7 @@ export default function SinglePlayerConfiguration() {
         ),
       );
     }
-    dispatch(GameActionsService.setGameState(GAME_PHASE.INITIAL_ROLL));
+    dispatch(GameActionCreator.setGameState(GAME_PHASE.INITIAL_ROLL));
     navigate("/game");
   };
 
