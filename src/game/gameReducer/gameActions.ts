@@ -4,10 +4,10 @@ import { GAME_PHASE } from "../../enums/GameState";
 import { PieceFormat } from "../../types/gameTypes";
 
 export class GameActionsService {
-  public static setGameMode(mode: GAME_MODE): GameAction {
+  public static setGameMode(gameMode: GAME_MODE): GameAction {
     return {
       type: ACTIONS.SET_GAMEMODE,
-      payload: mode,
+      payload: gameMode,
     };
   }
 
@@ -20,7 +20,7 @@ export class GameActionsService {
 
   public static setGameState(gameState: GAME_PHASE): GameAction {
     return {
-      type: ACTIONS.SET_GAME_STATE,
+      type: ACTIONS.SET_GAME_PHASE,
       payload: gameState,
     };
   }
@@ -42,6 +42,23 @@ export class GameActionsService {
     return {
       type: ACTIONS.MOVE_PIECE,
       payload: { from, to },
+    };
+  }
+
+  public static startRollingAnimation(): GameAction {
+    return {
+      type: ACTIONS.START_ROLLING_ANIMATION,
+    };
+  }
+  public static stopRollingAnimation(): GameAction {
+    return {
+      type: ACTIONS.STOP_ROLLING_ANIMATION,
+    };
+  }
+
+  public static resetGame(): GameAction {
+    return {
+      type: ACTIONS.RESET_GAME,
     };
   }
 

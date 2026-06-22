@@ -4,5 +4,8 @@
     height: 15rem;
     position:absolute;
     z-index:10000000000000;
+}
 
+.hidden{
+    display: none;
 }

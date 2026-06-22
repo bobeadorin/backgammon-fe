@@ -8,15 +8,17 @@ export default function GameDashboard() {
 
   return (
     <section className="boardDashBoard-container" style={{ color: "white", fontSize: "50px" }}>
-      <div>
-        {state.gamePhase}
-      </div>
+      <div>{state.gamePhase}</div>
       <div className="player-dashboard-container">
         <div> {!state.isRolling ? playerData : "isRolling"}</div>
-        {!state.isRolling && state.diceRoll.map((value, index) => <span key={index}> {value}</span>)}
+        {!state.isRolling && state.diceRoll.map((die, index) => <span key={index}> {die.value}</span>)}
       </div>
       <div>possibleMoves</div>
-      {state.possibleMoves.length > 0 ? state.possibleMoves.map((value) => <span>{value}</span>) : <span>no moves</span>}
+      {state.possibleMoves.length > 0 ? (
+        state.possibleMoves.map((value, index) => <span key={index}>{value}</span>)
+      ) : (
+        <span>no moves</span>
+      )}
     </section>
   );
 }

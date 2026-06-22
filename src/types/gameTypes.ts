@@ -1,4 +1,4 @@
-import { GAME_PHASE } from "../enums/GameState";
+import { GAME_PHASE, TURN_PHASE } from "../enums/GameState";
 import { Color } from "../enums/PieceColor";
 import { GAME_MODE } from "../game/gameReducer/gameActionTypes";
 
@@ -13,11 +13,12 @@ export interface Player {
 export type GameStateType = {
   gameMode: GAME_MODE | null;
   gamePhase: GAME_PHASE;
+  turnPhase: TURN_PHASE;
   currentPlayer: Player | null;
   whitePlayer: Player;
   blackPlayer: Player;
-  diceRoll: number[];
-  initialDiceRoll: { white: number[]; black: number[] };
+  diceRoll: DiceRoll[];
+  initialDiceRoll: { white: DiceRoll[]; black: DiceRoll[] };
   boardPieces: GameBoard;
   selectedPiece: PieceFormat | null;
   hitPiece: PieceFormat | null;
@@ -30,3 +31,8 @@ export type GameBoard = {
   pieces: PieceFormat[];
   possibleMoves: number[];
 }[];
+
+export type DiceRoll = {
+  value: number;
+  isUsed: boolean;
+};

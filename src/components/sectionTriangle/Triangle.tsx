@@ -2,21 +2,30 @@ import "./TriangleStyles.css";
 import Piece from "../piece/Piece";
 import type { PieceFormat } from "../../types/gameTypes";
 import { useGameContext } from "../../hooks/UseGameContext";
+import { GameActionsService } from "../../game/gameReducer/gameActions";
 
 type TriangleProps = {
   isDown: boolean;
   pieces: PieceFormat[];
   id: number;
-  hasPossibleMove?: boolean;
-  isPossibleMove?: boolean;
 };
 
-export default function Triangle({ isDown, pieces, id, hasPossibleMove = false, isPossibleMove = false }: TriangleProps) {
+export default function Triangle({ isDown, pieces, id }: TriangleProps) {
   const { state, dispatch } = useGameContext();
+  const hasPotentialMove = state.possibleMoves.includes(id);
+
+  const handleTriangleClick = () => {
+    if(!state.selectedPiece && pieces.length === 0 ) return;
+
+    if (!state.selectedPiece) {
+      dispatch(GameActionsService.selectPiece(pieces[pieces.length - 1]));
+      return;
+    }
+    dispatch(GameActionsService.movePiece(state.selectedPiece.position, id));
+  };
 
   return (
-    <div className={isPossibleMove ? "triangle-wrapper-selected" : "triangle-wrapper"}>
-      {/* debuggView */}
+    <div onClick={handleTriangleClick} className={hasPotentialMove ? "triangle-wrapper-selected" : "triangle-wrapper"}>
       <div
         style={
           isDown
@@ -30,7 +39,7 @@ export default function Triangle({ isDown, pieces, id, hasPossibleMove = false, 
       <div className={isDown ? "triangle down" : "triangle up"}></div>
       {pieces.map((value, index) => (
         <Piece
-          shouldHighlight={hasPossibleMove && index === pieces.length - 1}
+          shouldHighlight={hasPotentialMove && index === pieces.length - 1}
           key={index}
           isDown={isDown}
           pieceId={index}
